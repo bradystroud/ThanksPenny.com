@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: var(--tw-color-iwd-softLilac);
+    --foreground: var(--tw-color-iwd-primary);
+
+    --muted: var(--tw-color-iwd-softLilac);
+    --muted-foreground: var(--tw-color-iwd-primary);
+
+    --popover: var(--tw-color-iwd-softLilac);
+    --popover-foreground: var(--tw-color-iwd-primary);
+
+    --card: var(--tw-color-iwd-softLilac);
+    --card-foreground: var(--tw-color-iwd-primary);
+
+    --border: var(--tw-color-iwd-primary);
+    --input: var(--tw-color-iwd-primary);
+
+    --primary: var(--tw-color-iwd-primary);
+    --primary-foreground: var(--tw-color-iwd-accent);
+
+    --secondary: var(--tw-color-iwd-softLilac);
+    --secondary-foreground: var(--tw-color-iwd-primary);
+
+    --accent: var(--tw-color-iwd-softLilac);
+    --accent-foreground: var(--tw-color-iwd-primary);
+
+    --destructive: var(--tw-color-iwd-primary);
+    --destructive-foreground: var(--tw-color-iwd-softLilac);
+
+    --ring: var(--tw-color-iwd-primary);
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: var(--tw-color-iwd-primary);
+    --foreground: var(--tw-color-iwd-softLilac);
+
+    --muted: var(--tw-color-iwd-primary);
+    --muted-foreground: var(--tw-color-iwd-softLilac);
+
+    --popover: var(--tw-color-iwd-primary);
+    --popover-foreground: var(--tw-color-iwd-softLilac);
+
+    --card: var(--tw-color-iwd-primary);
+    --card-foreground: var(--tw-color-iwd-softLilac);
+
+    --border: var(--tw-color-iwd-primary);
+    --input: var(--tw-color-iwd-primary);
+
+    --primary: var(--tw-color-iwd-softLilac);
+    --primary-foreground: var(--tw-color-iwd-primary);
+
+    --secondary: var(--tw-color-iwd-primary);
+    --secondary-foreground: var(--tw-color-iwd-softLilac);
+
+    --accent: var(--tw-color-iwd-primary);
+    --accent-foreground: var(--tw-color-iwd-softLilac);
+
+    --destructive: var(--tw-color-iwd-primary);
+    --destructive-foreground: var(--tw-color-iwd-softLilac);
+
+    --ring: var(--tw-color-iwd-primary);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
