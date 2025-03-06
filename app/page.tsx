@@ -53,33 +53,21 @@ export default function ThankYouCard() {
           Our amazing SSW Brisbane Office Manager
         </p>
 
-        {/* 
-          DEVELOPERS: Add your personal thank you messages here!
-          Copy the example below and customize it:
-
-          <div className="mb-4 p-4 bg-purple-100 rounded-lg">
-            <p className="font-semibold text-purple-700">[Your Name]</p>
-            <p className="text-purple-600">[Your Message]</p>
-          </div>
-        */}
-
-        {/* Example thank you message */}
-        <div className="mb-4 p-4 bg-purple-100 rounded-lg">
-          <p className="font-semibold text-purple-700">John Doe</p>
-          <p className="text-purple-600">
-            Thank you for always being there for us, Penny! Your hard work and
-            dedication make SSW Brisbane an amazing place to work.
-          </p>
-        </div>
+        <p>
+          Penny - you're too awesome for a single page. Check out all your cards
+          here. </p>
 
         {/* New Buttons */}
         <div className="flex justify-center space-x-4 mt-4">
-          <button className="bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200">
-            Placeholder for now
-          </button>
+          <Link
+            href="/international-womens-day"
+            className="bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200"
+          >
+            International Womens Day
+          </Link>
           <Link href="/christmas-card">
             <button className="bg-purple-300 text-purple-800 font-semibold py-2 px-4 rounded-lg hover:bg-purple-400 transition-colors duration-200">
-              Christmas Card
+              Old Christmas Card
             </button>
           </Link>
         </div>

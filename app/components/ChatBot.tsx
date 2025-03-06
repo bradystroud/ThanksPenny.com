@@ -1,70 +1,63 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState, useRef, useEffect } from "react"
-import { X, Send } from "lucide-react"
+import type React from "react";
+import { useState, useRef, useEffect } from "react";
+import { X, Send } from "lucide-react";
 
 type Message = {
-  id: number
-  text: string
-  sender: "user" | "bot"
-}
+  id: number;
+  text: string;
+  sender: "user" | "bot";
+};
 
 interface ChatBotProps {
-  onClose: () => void
+  onClose: () => void;
 }
 
 export function ChatBot({ onClose }: ChatBotProps) {
-  const [messages, setMessages] = useState<Message[]>([])
-  const [inputMessage, setInputMessage] = useState("")
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [inputMessage, setInputMessage] = useState("");
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    scrollToBottom()
-  }, [messages])
+    scrollToBottom();
+  }, [messages]);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const handleSendMessage = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (inputMessage.trim() === "") return
+    e.preventDefault();
+    if (inputMessage.trim() === "") return;
 
     const newMessage: Message = {
       id: Date.now(),
       text: inputMessage,
       sender: "user",
-    }
+    };
 
-    setMessages((prevMessages) => [...prevMessages, newMessage])
-    setInputMessage("")
+    setMessages((prevMessages) => [...prevMessages, newMessage]);
+    setInputMessage("");
 
-    // Simulate bot response
     setTimeout(() => {
       const botMessage: Message = {
         id: Date.now(),
         text: getBotResponse(inputMessage),
         sender: "bot",
-      }
-      setMessages((prevMessages) => [...prevMessages, botMessage])
-    }, 500) // Reduced delay for faster testing
-  }
+      };
+      setMessages((prevMessages) => [...prevMessages, botMessage]);
+    }, 500);
+  };
 
   const getBotResponse = (message: string): string => {
-    const lowerCaseMessage = message.toLowerCase()
+    const lowerCaseMessage = message.toLowerCase();
     if (lowerCaseMessage.includes("hello") || lowerCaseMessage.includes("hi")) {
-      return "Hello! How can I help you today?"
-    } else if (lowerCaseMessage.includes("thank")) {
-      return "You're welcome! Is there anything else you'd like to know about Penny or SSW Brisbane?"
-    } else if (lowerCaseMessage.includes("penny")) {
-      return "Penny Walker is the amazing office manager at SSW Brisbane. She's known for her dedication and hard work!"
-    } else if (lowerCaseMessage.includes("ssw")) {
-      return "SSW is a leading software consultancy with offices in Brisbane and other locations. They're known for their expertise in .NET, Azure, and other Microsoft technologies."
+      return "Hello! How can I help you today?";
     } else {
-      return "I'm sorry, I didn't quite understand that. Could you please rephrase your question?"
+      return "Ask Penny 👑 - she has all the answers. I'm just a silly bot 🤖";
     }
-  }
+  };
 
   return (
     <div className="fixed bottom-4 right-4 w-80 h-96 bg-white rounded-lg shadow-xl flex flex-col overflow-hidden transition-all duration-300 ease-in-out">
@@ -76,10 +69,17 @@ export function ChatBot({ onClose }: ChatBotProps) {
       </div>
       <div className="flex-grow p-4 overflow-y-auto">
         {messages.map((message) => (
-          <div key={message.id} className={`mb-2 ${message.sender === "user" ? "text-right" : "text-left"}`}>
+          <div
+            key={message.id}
+            className={`mb-2 ${
+              message.sender === "user" ? "text-right" : "text-left"
+            }`}
+          >
             <span
               className={`inline-block p-2 rounded-lg ${
-                message.sender === "user" ? "bg-purple-600 text-white" : "bg-gray-200 text-gray-800"
+                message.sender === "user"
+                  ? "bg-purple-600 text-white"
+                  : "bg-gray-200 text-gray-800"
               }`}
             >
               {message.text}
@@ -104,6 +104,5 @@ export function ChatBot({ onClose }: ChatBotProps) {
         </button>
       </form>
     </div>
-  )
+  );
 }
-
