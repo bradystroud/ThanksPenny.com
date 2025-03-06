@@ -54,7 +54,7 @@ export default function ThankYouCard() {
         </p>
 
         <p>
-          Penny - you're too awesome for a single page. Check out all your cards
+          Penny - you are too awesome for a single page. Check out all your cards
           here. </p>
 
         {/* New Buttons */}
