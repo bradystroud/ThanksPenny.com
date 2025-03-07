@@ -34,6 +34,9 @@
     --ring: var(--tw-color-iwd-primary);
 
     --radius: 0.5rem;
+
+    /* For Next.js 13+ with App Router */
+    --app-height: 100%;
   }
 
   .dark {
@@ -74,5 +77,22 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#__next,
+#__next > div {
+  height: 100%;
+}
+
+@supports (-webkit-touch-callout: none) {
+  body {
+    /* For iOS mobile browsers */
+    height: -webkit-fill-available;
   }
 }

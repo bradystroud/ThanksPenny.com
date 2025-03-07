@@ -44,7 +44,7 @@ export default function ThankYouCard() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-500 to-purple-300 py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+    <div className="w-full bg-gradient-to-b from-purple-500 to-purple-300 py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
       <div className="max-w-3xl mx-auto bg-white shadow-xl rounded-lg p-8 text-center">
         <h1 className="text-4xl font-bold text-purple-800 mb-4">
           Thank You, Penny Walker!
@@ -54,8 +54,9 @@ export default function ThankYouCard() {
         </p>
 
         <p>
-          Penny - you are too awesome for a single page. Check out all your cards
-          here. </p>
+          Penny - you are too awesome for a single page. Check out all your
+          cards here.{" "}
+        </p>
 
         {/* New Buttons */}
         <div className="flex justify-center space-x-4 mt-4">

@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { FaHome } from "react-icons/fa";
 
 export default function InternationalWomensDay() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-500 to-pink-300 py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-      <div className="max-w-3xl mx-auto bg-white shadow-xl rounded-lg p-8 text-center">
+    <div className="w-full bg-gradient-to-b from-pink-500 to-pink-300 py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+      <div className="max-w-3xl mx-auto bg-white shadow-xl rounded-lg p-8 text-center h-100 ">
         <h1 className="text-4xl font-bold text-pink-800 mb-4">
           {"Celebrating Penny Walker on International Women's Day!"}
         </h1>
@@ -35,12 +36,12 @@ export default function InternationalWomensDay() {
         */}
 
         <div className="flex justify-center space-x-4 mt-4">
-          <Link
+            <Link
             href="/"
-            className="bg-pink-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-pink-700 transition-colors duration-200"
-          >
-            Home
-          </Link>
+            className="bg-pink-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-pink-700 transition-colors duration-200 flex items-center gap-2"
+            >
+            <FaHome /> Home
+            </Link>
         </div>
       </div>
     </div>
