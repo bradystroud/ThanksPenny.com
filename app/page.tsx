@@ -77,7 +77,7 @@ export default function ThankYouCard() {
       {/* Floating Action Button */}
       <button
         onClick={() => setIsChatOpen(true)}
-        className="fixed bottom-4 right-4 bg-purple-600 text-white rounded-full p-4 shadow-lg hover:bg-purple-700 transition-colors duration-200"
+        className="fixed right-4 mb-24 bg-purple-600 text-white rounded-full p-4 shadow-lg hover:bg-purple-700 transition-colors duration-200"
       >
         <MessageCircle size={24} />
       </button>

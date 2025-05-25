@@ -17,8 +17,20 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className={`${inter.className} flex flex-col min-h-screen`}>
-        <main className="h-screen flex">{children}</main>
-        <footer className="flex justify-between items-center p-4 border-t w-full">
+        <main className="h-screen flex flex-col">
+          <div className="flex justify-end p-4">
+            <a
+              href="https://github.com/bradystroud/ThanksPenny.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200"
+            >
+              Contribute
+            </a>
+          </div>
+          {children}
+        </main>
+        <footer className="flex justify-between items-center p-6 bg-gray-100 border-t-2 border-purple-200 w-full">
           <div>
             Made with ❤️ by{" "}
             <a
@@ -30,14 +42,6 @@ export default function RootLayout({
               Brady Stroud
             </a>
           </div>
-          <a
-            href="https://github.com/bradystroud/ThanksPenny.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:opacity-75"
-          >
-            Contribute
-          </a>
         </footer>
       </body>
     </html>
