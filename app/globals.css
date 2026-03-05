@@ -4,79 +4,20 @@
 
 @layer base {
   :root {
-    --background: var(--tw-color-iwd-softLilac);
-    --foreground: var(--tw-color-iwd-primary);
-
-    --muted: var(--tw-color-iwd-softLilac);
-    --muted-foreground: var(--tw-color-iwd-primary);
-
-    --popover: var(--tw-color-iwd-softLilac);
-    --popover-foreground: var(--tw-color-iwd-primary);
-
-    --card: var(--tw-color-iwd-softLilac);
-    --card-foreground: var(--tw-color-iwd-primary);
-
-    --border: var(--tw-color-iwd-primary);
-    --input: var(--tw-color-iwd-primary);
-
-    --primary: var(--tw-color-iwd-primary);
-    --primary-foreground: var(--tw-color-iwd-accent);
-
-    --secondary: var(--tw-color-iwd-softLilac);
-    --secondary-foreground: var(--tw-color-iwd-primary);
-
-    --accent: var(--tw-color-iwd-softLilac);
-    --accent-foreground: var(--tw-color-iwd-primary);
-
-    --destructive: var(--tw-color-iwd-primary);
-    --destructive-foreground: var(--tw-color-iwd-softLilac);
-
-    --ring: var(--tw-color-iwd-primary);
-
-    --radius: 0.5rem;
-
-    /* For Next.js 13+ with App Router */
+    --background: #faf5ff;
+    --foreground: #3b0764;
+    --radius: 0.75rem;
     --app-height: 100%;
-  }
-
-  .dark {
-    --background: var(--tw-color-iwd-primary);
-    --foreground: var(--tw-color-iwd-softLilac);
-
-    --muted: var(--tw-color-iwd-primary);
-    --muted-foreground: var(--tw-color-iwd-softLilac);
-
-    --popover: var(--tw-color-iwd-primary);
-    --popover-foreground: var(--tw-color-iwd-softLilac);
-
-    --card: var(--tw-color-iwd-primary);
-    --card-foreground: var(--tw-color-iwd-softLilac);
-
-    --border: var(--tw-color-iwd-primary);
-    --input: var(--tw-color-iwd-primary);
-
-    --primary: var(--tw-color-iwd-softLilac);
-    --primary-foreground: var(--tw-color-iwd-primary);
-
-    --secondary: var(--tw-color-iwd-primary);
-    --secondary-foreground: var(--tw-color-iwd-softLilac);
-
-    --accent: var(--tw-color-iwd-primary);
-    --accent-foreground: var(--tw-color-iwd-softLilac);
-
-    --destructive: var(--tw-color-iwd-primary);
-    --destructive-foreground: var(--tw-color-iwd-softLilac);
-
-    --ring: var(--tw-color-iwd-primary);
   }
 }
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-purple-200;
   }
   body {
-    @apply bg-background text-foreground;
+    background: var(--background);
+    color: var(--foreground);
   }
 }
 
@@ -85,14 +26,57 @@ body {
   height: 100%;
 }
 
-#__next,
-#__next > div {
-  height: 100%;
-}
-
 @supports (-webkit-touch-callout: none) {
   body {
-    /* For iOS mobile browsers */
     height: -webkit-fill-available;
   }
 }
+
+/* Shimmer animation for decorative elements */
+@keyframes shimmer {
+  0% { opacity: 0.4; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-8px); }
+  100% { opacity: 0.4; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-12px) rotate(2deg); }
+  66% { transform: translateY(-6px) rotate(-1deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(147, 51, 234, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(147, 51, 234, 0.6); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Stagger delays for sparkle elements */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-1000 { animation-delay: 1s; }

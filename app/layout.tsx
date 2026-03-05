@@ -1,6 +1,7 @@
 import type React from "react";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import { Heart } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,15 +18,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className={`${inter.className} flex flex-col min-h-screen`}>
-        <main className="h-screen flex">{children}</main>
-        <footer className="flex justify-between items-center p-4 border-t w-full">
-          <div>
-            Made with ❤️ by{" "}
+        <main className="flex-1 flex">{children}</main>
+        <footer className="bg-purple-950/80 text-purple-200 py-4 px-6 flex justify-between items-center text-sm backdrop-blur-sm">
+          <div className="flex items-center gap-1.5">
+            Made with <Heart className="w-4 h-4 text-pink-400 fill-pink-400 inline" /> by{" "}
             <a
               href="https://bradystroud.dev"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:opacity-75"
+              className="text-purple-300 hover:text-white transition-colors underline underline-offset-2"
             >
               Brady Stroud
             </a>
@@ -34,9 +35,9 @@ export default function RootLayout({
             href="https://github.com/bradystroud/ThanksPenny.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:opacity-75"
+            className="text-purple-300 hover:text-white transition-colors underline underline-offset-2"
           >
-            Contribute
+            Want to thank Penny? Contribute!
           </a>
         </footer>
       </body>
