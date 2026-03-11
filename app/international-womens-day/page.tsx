@@ -32,6 +32,12 @@ const messages = [
       "Penny, the office wouldn't be the same without you. Thanks for everything you do. Happy International Women's Day! 🌸",
     emoji: "😎",
   },
+  {
+    name: "Daniel Mackay",
+    message:
+      "Penny, my travel booking superstar! Thanks so much for booking my flights and accomodation for all the travel I do. I've stayed at the Meriton 50 times now, so that's 50 bookings for that one hotel alone!",
+    emoji: "✈️"
+  }
   // DEVELOPERS: Add your message here! Copy this format:
   // {
   //   name: "Your Name",
