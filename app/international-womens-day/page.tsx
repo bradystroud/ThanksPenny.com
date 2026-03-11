@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import confetti from "canvas-confetti";
 import Link from "next/link";
 import { FaHome } from "react-icons/fa";
-import { Sparkles, Heart, Star, Award } from "lucide-react";
+import { Sparkles, Heart, Star, Award, BookOpen, Gamepad2 } from "lucide-react";
 
 const messages = [
   {
@@ -160,6 +160,32 @@ export default function InternationalWomensDay() {
               </a>{" "}
               and add your message to the list!
             </p>
+          </div>
+        </div>
+
+        {/* Games section */}
+        <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-6 sm:p-8 text-center shadow-xl">
+          <h2 className="text-xl font-bold text-purple-800 mb-2">
+            Take a break and play!
+          </h2>
+          <p className="text-pink-600 text-sm mb-4">
+            Games made just for our favourite history lover
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-3">
+            <Link
+              href="/history-quiz"
+              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold py-3 px-5 rounded-2xl hover:from-indigo-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:scale-105"
+            >
+              <BookOpen className="w-5 h-5" />
+              History Quiz
+            </Link>
+            <Link
+              href="/arcade"
+              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-yellow-500 text-purple-900 font-bold py-3 px-5 rounded-2xl hover:from-amber-600 hover:to-yellow-600 transition-all duration-300 shadow-lg hover:scale-105"
+            >
+              <Gamepad2 className="w-5 h-5" />
+              Artifact Hunt
+            </Link>
           </div>
         </div>
 

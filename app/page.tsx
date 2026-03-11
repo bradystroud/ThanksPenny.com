@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import confetti from "canvas-confetti";
-import { MessageCircle, Sparkles, Crown, PartyPopper, Gift } from "lucide-react";
+import { MessageCircle, Sparkles, Crown, PartyPopper, Gift, BookOpen, Gamepad2 } from "lucide-react";
 import { ChatBot } from "./components/ChatBot";
 import Link from "next/link";
 
@@ -94,6 +94,20 @@ export default function ThankYouCard() {
             >
               <Gift className="w-5 h-5" />
               Christmas Card
+            </Link>
+            <Link
+              href="/history-quiz"
+              className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold py-3 px-6 rounded-2xl hover:from-indigo-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-indigo-500/25 hover:scale-105"
+            >
+              <BookOpen className="w-5 h-5" />
+              History Quiz
+            </Link>
+            <Link
+              href="/arcade"
+              className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-yellow-500 text-purple-900 font-bold py-3 px-6 rounded-2xl hover:from-amber-600 hover:to-yellow-600 transition-all duration-300 shadow-lg hover:shadow-amber-500/25 hover:scale-105"
+            >
+              <Gamepad2 className="w-5 h-5" />
+              Artifact Hunt
             </Link>
           </div>
         </div>
