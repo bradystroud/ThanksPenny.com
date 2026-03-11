@@ -273,7 +273,7 @@ export default function InternationalWomensDay() {
             March 8, 2026
           </p>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-            #InspireInclusion
+            #IWD2026
           </h2>
           <p className="text-white/90 max-w-lg mx-auto leading-relaxed">
             This International Women&apos;s Day, we celebrate the women who make our
