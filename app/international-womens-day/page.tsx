@@ -37,6 +37,11 @@ const messages = [
     message:
       "Penny, my travel booking superstar! Thanks so much for booking my flights and accomodation for all the travel I do. I've stayed at the Meriton 50 times now, so that's 50 bookings for that one hotel alone!",
     emoji: "✈️"
+  },
+  {
+    name: "Ivan Gaiduk",
+    message: "Penny, you are awesome, you keep the vibes high and the office running smoothly. Thanks for being there for us! 🎉",
+    emoji: "🌟",
   }
   // DEVELOPERS: Add your message here! Copy this format:
   // {
