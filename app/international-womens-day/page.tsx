@@ -74,7 +74,7 @@ export default function InternationalWomensDay() {
             International Women&apos;s Day 2026
           </p>
 
-          <h1 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-pink-600 via-fuchsia-600 to-purple-600 bg-clip-text text-transparent mb-4 leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-pink-600 via-fuchsia-600 to-purple-600 bg-clip-text text-transparent mb-8 leading-tight whitespace-nowrap">
             Celebrating Penny Walker
           </h1>
 
