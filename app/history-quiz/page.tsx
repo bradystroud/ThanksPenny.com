@@ -86,6 +86,127 @@ const questions: Question[] = [
     correctIndex: 1,
     funFact: "Over 8,000 soldiers, 130 chariots, and 670 horses were buried with the emperor. Each soldier has a unique face!",
   },
+  // Women in History
+  {
+    question: "Who was the first woman to fly solo across the Atlantic Ocean?",
+    options: ["Bessie Coleman", "Amelia Earhart", "Harriet Quimby", "Jacqueline Cochran"],
+    correctIndex: 1,
+    funFact: "Amelia Earhart completed the solo flight in 1932, five years after Charles Lindbergh. She flew from Newfoundland to Northern Ireland in about 15 hours!",
+  },
+  {
+    question: "Cleopatra was the last active ruler of which kingdom?",
+    options: ["Roman Empire", "Ptolemaic Kingdom of Egypt", "Carthage", "Kingdom of Kush"],
+    correctIndex: 1,
+    funFact: "Cleopatra spoke at least nine languages and was the first Ptolemaic ruler to learn Egyptian. She was incredibly well-educated!",
+  },
+  {
+    question: "Which woman led the French army to several victories during the Hundred Years' War?",
+    options: ["Eleanor of Aquitaine", "Catherine de Medici", "Joan of Arc", "Marie Antoinette"],
+    correctIndex: 2,
+    funFact: "Joan of Arc was only 17 when she led the French army to lift the siege of Orl\u00e9ans in 1429. She became a national heroine of France!",
+  },
+  {
+    question: "Who is considered the world's first computer programmer?",
+    options: ["Grace Hopper", "Ada Lovelace", "Hedy Lamarr", "Marie Curie"],
+    correctIndex: 1,
+    funFact: "Ada Lovelace wrote the first algorithm intended for a machine in 1843 - for Charles Babbage's Analytical Engine. She was Lord Byron's daughter!",
+  },
+  {
+    question: "Which woman was the first to win two Nobel Prizes in different sciences?",
+    options: ["Dorothy Hodgkin", "Marie Curie", "Lise Meitner", "Irène Joliot-Curie"],
+    correctIndex: 1,
+    funFact: "Marie Curie won the Nobel Prize in Physics (1903) and Chemistry (1911). Her daughter Irène also won a Nobel Prize in Chemistry!",
+  },
+  {
+    question: "Boudicca led a revolt against the Romans in which modern-day country?",
+    options: ["France", "Spain", "England", "Germany"],
+    correctIndex: 2,
+    funFact: "Boudicca was queen of the Iceni tribe. Her uprising in 60-61 AD destroyed Colchester, London, and St Albans before being defeated!",
+  },
+  {
+    question: "Who was the first woman to travel to space?",
+    options: ["Sally Ride", "Valentina Tereshkova", "Mae Jemison", "Svetlana Savitskaya"],
+    correctIndex: 1,
+    funFact: "Valentina Tereshkova orbited Earth 48 times in Vostok 6 in June 1963. She was only 26 years old and had been a textile worker!",
+  },
+  {
+    question: "Which queen ruled England for 45 years during the Golden Age?",
+    options: ["Queen Anne", "Mary Queen of Scots", "Queen Elizabeth I", "Queen Victoria"],
+    correctIndex: 2,
+    funFact: "Elizabeth I reigned from 1558 to 1603. She never married, earning the nickname 'The Virgin Queen', and oversaw the defeat of the Spanish Armada!",
+  },
+  {
+    question: "Frida Kahlo, the iconic artist, was from which country?",
+    options: ["Spain", "Argentina", "Mexico", "Brazil"],
+    correctIndex: 2,
+    funFact: "Frida Kahlo created 143 paintings, 55 of which are self-portraits. She once said 'I paint myself because I am so often alone'!",
+  },
+  {
+    question: "Who founded the modern nursing profession during the Crimean War?",
+    options: ["Clara Barton", "Florence Nightingale", "Dorothea Dix", "Mary Seacole"],
+    correctIndex: 1,
+    funFact: "Florence Nightingale was known as 'The Lady with the Lamp'. She reduced the death rate at her hospital from 42% to 2% through sanitation reforms!",
+  },
+  {
+    question: "Which woman mathematician's calculations were critical for the first US crewed spaceflights?",
+    options: ["Katherine Johnson", "Emmy Noether", "Sophie Germain", "Maryam Mirzakhani"],
+    correctIndex: 0,
+    funFact: "Katherine Johnson calculated trajectories for NASA's Mercury and Apollo missions. John Glenn personally requested that she verify the computer's calculations!",
+  },
+  {
+    question: "Hatshepsut was one of the most successful pharaohs of which ancient civilisation?",
+    options: ["Mesopotamia", "Ancient Greece", "Ancient Egypt", "Persia"],
+    correctIndex: 2,
+    funFact: "Hatshepsut ruled for about 20 years (1478-1458 BC) and is regarded as one of Egypt's most successful pharaohs. She often wore a false beard as a symbol of power!",
+  },
+  {
+    question: "Which suffragette threw herself in front of the King's horse at the 1913 Epsom Derby?",
+    options: ["Emmeline Pankhurst", "Emily Davison", "Millicent Fawcett", "Sylvia Pankhurst"],
+    correctIndex: 1,
+    funFact: "Emily Davison died from her injuries four days later. She had been imprisoned nine times and force-fed 49 times for the suffragette cause!",
+  },
+  {
+    question: "Who was the first female Prime Minister of Australia?",
+    options: ["Quentin Bryce", "Julia Gillard", "Julie Bishop", "Penny Wong"],
+    correctIndex: 1,
+    funFact: "Julia Gillard served as PM from 2010 to 2013. Her famous misogyny speech in parliament in 2012 went viral worldwide!",
+  },
+  {
+    question: "Which ancient Greek poetess is known as the 'Tenth Muse'?",
+    options: ["Hypatia", "Sappho", "Aspasia", "Arete"],
+    correctIndex: 1,
+    funFact: "Sappho lived on the island of Lesbos around 630 BC. Plato called her the 'Tenth Muse' - the original nine were goddesses of the arts!",
+  },
+  {
+    question: "Rosa Parks refused to give up her bus seat in which US city in 1955?",
+    options: ["Atlanta", "Birmingham", "Montgomery", "Selma"],
+    correctIndex: 2,
+    funFact: "Rosa Parks' act of defiance in Montgomery, Alabama sparked the Montgomery Bus Boycott, which lasted 381 days and was a pivotal moment in the civil rights movement!",
+  },
+  {
+    question: "Which woman discovered radioactivity's connection to the atomic nucleus, enabling the discovery of nuclear fission?",
+    options: ["Marie Curie", "Lise Meitner", "Chien-Shiung Wu", "Rosalind Franklin"],
+    correctIndex: 1,
+    funFact: "Lise Meitner provided the first theoretical explanation of nuclear fission in 1939, but was overlooked for the Nobel Prize. Element 109, Meitnerium, is named after her!",
+  },
+  {
+    question: "Who was the first woman to reach the summit of Mount Everest?",
+    options: ["Junko Tabei", "Wanda Rutkiewicz", "Stacy Allison", "Lydia Bradey"],
+    correctIndex: 0,
+    funFact: "Junko Tabei from Japan reached the summit on May 16, 1975. She went on to become the first woman to complete the Seven Summits!",
+  },
+  {
+    question: "Which warrior queen of the Jhansi state fought against British rule in India?",
+    options: ["Razia Sultana", "Rani Lakshmibai", "Noor Jahan", "Ahilyabai Holkar"],
+    correctIndex: 1,
+    funFact: "Rani Lakshmibai fought in the Indian Rebellion of 1857 and died in battle at age 29. She is one of India's most celebrated freedom fighters!",
+  },
+  {
+    question: "Hypatia, one of the first known female mathematicians, lived in which ancient city?",
+    options: ["Athens", "Rome", "Alexandria", "Constantinople"],
+    correctIndex: 2,
+    funFact: "Hypatia of Alexandria (c. 360-415 AD) was a philosopher, astronomer, and mathematician. She headed the Neoplatonist school and was renowned throughout the Mediterranean!",
+  },
 ];
 
 function shuffleArray<T>(array: T[]): T[] {
@@ -97,7 +218,7 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled;
 }
 
-const QUESTIONS_PER_GAME = 8;
+const QUESTIONS_PER_GAME = 10;
 
 export default function HistoryQuiz() {
   const [gameQuestions, setGameQuestions] = useState<Question[]>(() =>
