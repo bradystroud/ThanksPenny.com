@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, ReactNode } from "react";
 import confetti from "canvas-confetti";
 import Link from "next/link";
 import { FaHome } from "react-icons/fa";
@@ -19,7 +19,7 @@ interface PennyPhoto {
   gone: boolean;
 }
 
-const messages = [
+const messages: Array<{ name: string; message: ReactNode; emoji: ReactNode }> = [
   {
     name: "Brady Stroud",
     message:
@@ -54,6 +54,103 @@ const messages = [
     message:
       "Penny, you are the heart and soul of the Brisbane office. You keep everything running smoothly and make sure each and everyone of us feels supported and valuded. We are so lucky to have you as our manager. Thanks for putting up with us rugrats. Happy International Women's Day",
     emoji: "💖"
+  },
+  {
+    name: "JK",
+    message: (
+      <div className="flex flex-col space-y-4">
+        <p>
+          Penny, happy International Women’s Day. You make a bigger difference than you probably realise. The care you bring, the way you stay across the details, and the calm way you help people makes everything work better. You have that rare mix of capability and kindness and it doesn’t go unnoticed. Thank you for all that you do, you make the place feel more human and change chaos into order.
+        </p>
+        <div className="w-full flex justify-center py-6">
+          <svg className="w-64 h-64 drop-shadow-2xl" viewBox="0 0 100 100">
+            <style>{`
+              .float-1 { animation: float 4s ease-in-out infinite; }
+              .float-2 { animation: float 4s ease-in-out infinite; animation-delay: 1.5s; }
+              .float-3 { animation: float 4s ease-in-out infinite; animation-delay: 3s; }
+              .pulse-glow { animation: pulseGlow 2s infinite alternate; }
+              .spin-slow { animation: spin 20s linear infinite; transform-origin: 50px 50px; }
+              @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-3px); }
+              }
+              @keyframes pulseGlow {
+                0% { filter: drop-shadow(0 0 2px rgba(236, 72, 153, 0.4)); transform: scale(0.98); }
+                100% { filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.8)); transform: scale(1.02); }
+              }
+              @keyframes spin { 100% { transform: rotate(360deg); } }
+            `}</style>
+
+            <defs>
+              <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#f8fafc" />
+                <stop offset="100%" stopColor="#cbd5e1" />
+              </linearGradient>
+              <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#fef08a" />
+                <stop offset="50%" stopColor="#f59e0b" />
+                <stop offset="100%" stopColor="#b45309" />
+              </linearGradient>
+              <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#f472b6" />
+                <stop offset="100%" stopColor="#be185d" />
+              </linearGradient>
+            </defs>
+
+            {/* Radiant background lines (Chaos to Order) */}
+            <g className="spin-slow" opacity="0.4" stroke="url(#goldGrad)" strokeWidth="0.5">
+              {Array.from({ length: 24 }).map((_, i) => (
+                <line key={i} x1="50" y1="50" x2={50 + 45 * Math.cos(i * Math.PI / 12)} y2={50 + 45 * Math.sin(i * Math.PI / 12)} />
+              ))}
+            </g>
+
+            {/* Hero Shield - Base of structure */}
+            <path d="M 50 15 L 80 25 L 80 50 C 80 75 50 90 50 90 C 50 90 20 75 20 50 L 20 25 Z" fill="url(#shieldGrad)" stroke="url(#goldGrad)" strokeWidth="2" className="float-1" />
+
+            {/* Crossed Tools: Archeologist Trowel */}
+            <g transform="translate(50, 50) rotate(45) translate(-50, -50)" className="float-2">
+              <rect x="47" y="20" width="6" height="15" fill="#78350f" rx="1" />
+              <line x1="50" y1="35" x2="50" y2="45" stroke="#94a3b8" strokeWidth="2" />
+              <path d="M50,80 L35,45 L65,45 Z" fill="#94a3b8" />
+              <path d="M50,80 L43,45 L50,45 Z" fill="#cbd5e1" />
+            </g>
+
+            {/* Crossed Tools: Pen/Quill (Organization) */}
+            <g transform="translate(50, 50) rotate(-45) translate(-50, -50)" className="float-2">
+              <path d="M 45 80 Q 30 50 50 20 Q 70 50 55 80 L 50 90 Z" fill="#334155" />
+              <path d="M 50 20 L 50 85" stroke="#cbd5e1" strokeWidth="1" />
+              <path d="M 45 80 L 55 80 L 50 90 Z" fill="#fbbf24" />
+              <line x1="50" y1="40" x2="60" y2="30" stroke="#cbd5e1" strokeWidth="0.5" />
+              <line x1="50" y1="50" x2="63" y2="40" stroke="#cbd5e1" strokeWidth="0.5" />
+              <line x1="50" y1="60" x2="60" y2="50" stroke="#cbd5e1" strokeWidth="0.5" />
+              <line x1="50" y1="40" x2="40" y2="30" stroke="#cbd5e1" strokeWidth="0.5" />
+              <line x1="50" y1="55" x2="38" y2="43" stroke="#cbd5e1" strokeWidth="0.5" />
+            </g>
+
+            {/* Heart of Kindness */}
+            <g className="pulse-glow" transform="translate(0, 5)">
+              <path d="M50,35 C50,35 40,20 25,30 C10,40 50,75 50,75 C50,75 90,40 75,30 C60,20 50,35 50,35 Z" fill="url(#heartGrad)" opacity="0.9" stroke="#fff" strokeWidth="1.5" />
+            </g>
+
+            {/* The Crown (Legend) */}
+            <g className="float-3" transform="translate(0, -5)">
+              <path d="M 30 25 L 40 35 L 50 15 L 60 35 L 70 25 L 65 42 L 35 42 Z" fill="url(#goldGrad)" stroke="#b45309" strokeWidth="0.5" />
+              <circle cx="30" cy="25" r="2" fill="#fff" />
+              <circle cx="50" cy="15" r="3" fill="#fff" />
+              <circle cx="70" cy="25" r="2" fill="#fff" />
+            </g>
+
+            {/* Sparkles */}
+            <g fill="url(#goldGrad)" className="float-1">
+              <path d="M 15 40 Q 20 40 20 35 Q 20 40 25 40 Q 20 40 20 45 Q 20 40 15 40" />
+              <path d="M 80 50 Q 83 50 83 47 Q 83 50 86 50 Q 83 50 83 53 Q 83 50 80 50" />
+              <path d="M 25 70 Q 27 70 27 68 Q 27 70 29 70 Q 27 70 27 72 Q 27 70 25 70" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    ),
+    emoji: "🦸‍♀️",
   }
   // DEVELOPERS: Add your message here! Copy this format:
   // {
