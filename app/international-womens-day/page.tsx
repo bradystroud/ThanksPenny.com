@@ -42,6 +42,12 @@ const messages = [
     name: "Ivan Gaiduk",
     message: "Penny, you are awesome, you keep the vibes high and the office running smoothly. Thanks for being there for us! 🎉",
     emoji: "🌟",
+  },
+  {
+    name: "Vlad Kireyev",
+    message:
+      "Penny, you are the pillar holding our circus together! Thank you for being the best manager EVER!",
+    emoji: "🎉"
   }
   // DEVELOPERS: Add your message here! Copy this format:
   // {
