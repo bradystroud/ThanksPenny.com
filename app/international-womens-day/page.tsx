@@ -48,6 +48,12 @@ const messages = [
     message:
       "Penny, you are the pillar holding our circus together! Thank you for being the best manager EVER!",
     emoji: "🎉"
+  },
+  {
+    name: "Kaha Mason",
+    message:
+      "Penny, you are the heart and soul of the Brisbane office. You keep everything running smoothly and make sure each and everyone of us feels supported and valuded. We are so lucky to have you as our manager. Thanks for putting up with us rugrats. Happy International Women's Day",
+    emoji: "💖"
   }
   // DEVELOPERS: Add your message here! Copy this format:
   // {
