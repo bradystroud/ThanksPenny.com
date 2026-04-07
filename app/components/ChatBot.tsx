@@ -139,17 +139,21 @@ export function ChatBot({ onClose }: ChatBotProps) {
   };
 
   return (
-    <div className="fixed bottom-20 right-6 w-80 h-[28rem] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50 border border-purple-100">
+    <div
+      role="dialog"
+      aria-label="Penny Fan Club chat"
+      className="fixed bottom-20 right-6 w-80 h-[28rem] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50 border border-purple-100"
+    >
       <div className="bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white p-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <Crown className="w-5 h-5 text-yellow-300" />
+          <Crown className="w-5 h-5 text-yellow-300" aria-hidden="true" />
           <h2 className="text-lg font-bold">Penny Fan Club</h2>
         </div>
-        <button onClick={onClose} className="text-white/80 hover:text-white transition-colors">
-          <X size={20} />
+        <button onClick={onClose} aria-label="Close chat" className="text-white/80 hover:text-white transition-colors">
+          <X size={20} aria-hidden="true" />
         </button>
       </div>
-      <div className="flex-grow p-4 overflow-y-auto space-y-3 bg-purple-50/50">
+      <div className="flex-grow p-4 overflow-y-auto space-y-3 bg-purple-50/50" aria-live="polite" aria-label="Chat messages">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -169,7 +173,9 @@ export function ChatBot({ onClose }: ChatBotProps) {
         <div ref={messagesEndRef} />
       </div>
       <form onSubmit={handleSendMessage} className="border-t border-purple-100 p-3 flex gap-2 bg-white">
+        <label htmlFor="chat-input" className="sr-only">Message</label>
         <input
+          id="chat-input"
           type="text"
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
@@ -178,9 +184,10 @@ export function ChatBot({ onClose }: ChatBotProps) {
         />
         <button
           type="submit"
+          aria-label="Send message"
           className="bg-purple-600 text-white px-4 py-2.5 rounded-xl hover:bg-purple-700 transition-colors"
         >
-          <Send size={16} />
+          <Send size={16} aria-hidden="true" />
         </button>
       </form>
     </div>

@@ -80,3 +80,22 @@ body {
 .delay-500 { animation-delay: 0.5s; }
 .delay-700 { animation-delay: 0.7s; }
 .delay-1000 { animation-delay: 1s; }
+
+/* Focus styles for keyboard navigation */
+:focus-visible {
+  outline: 3px solid #9333ea;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .animate-shimmer,
+  .animate-float,
+  .animate-pulse-glow,
+  .animate-gradient,
+  .animate-pulse,
+  .animate-bounce {
+    animation: none;
+  }
+}
