@@ -307,7 +307,7 @@ export default function HistoryQuiz() {
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-purple-900 via-indigo-800 to-purple-700 animate-gradient py-8 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative overflow-hidden">
       {/* Floating background elements */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <BookOpen className="absolute top-[10%] left-[12%] w-10 h-10 text-purple-400/20 animate-float" />
         <Sparkles className="absolute top-[20%] right-[15%] w-6 h-6 text-yellow-300/25 animate-shimmer delay-300" />
         <BookOpen className="absolute bottom-[25%] right-[10%] w-8 h-8 text-indigo-300/20 animate-float delay-500" />
@@ -334,7 +334,14 @@ export default function HistoryQuiz() {
         {!gameOver ? (
           <>
             {/* Progress bar */}
-            <div className="bg-white/20 rounded-full h-3 overflow-hidden">
+            <div
+              className="bg-white/20 rounded-full h-3 overflow-hidden"
+              role="progressbar"
+              aria-valuenow={currentIndex + (selectedAnswer !== null ? 1 : 0)}
+              aria-valuemin={0}
+              aria-valuemax={gameQuestions.length}
+              aria-label={`Question ${currentIndex + 1} of ${gameQuestions.length}`}
+            >
               <div
                 className="bg-gradient-to-r from-yellow-400 to-amber-500 h-full rounded-full transition-all duration-500"
                 style={{
@@ -376,7 +383,7 @@ export default function HistoryQuiz() {
                 <div className="mt-6 space-y-4">
                   <div className="bg-purple-50 border border-purple-200 rounded-xl p-4">
                     <p className="text-sm font-bold text-purple-700 mb-1 flex items-center gap-1.5">
-                      <Sparkles className="w-4 h-4" />
+                      <Sparkles className="w-4 h-4" aria-hidden="true" />
                       Fun Fact
                     </p>
                     <p className="text-sm text-purple-600">{currentQuestion.funFact}</p>
@@ -386,7 +393,7 @@ export default function HistoryQuiz() {
                     className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold py-3 px-6 rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
                   >
                     {currentIndex + 1 >= gameQuestions.length ? "See Results" : "Next Question"}
-                    <ChevronRight className="w-5 h-5" />
+                    <ChevronRight className="w-5 h-5" aria-hidden="true" />
                   </button>
                 </div>
               )}
@@ -395,7 +402,7 @@ export default function HistoryQuiz() {
         ) : (
           /* Results screen */
           <div className="bg-white/95 backdrop-blur-sm shadow-2xl rounded-3xl p-8 sm:p-10 text-center space-y-6">
-            <Trophy className="w-16 h-16 text-yellow-500 mx-auto drop-shadow-lg" />
+            <Trophy className="w-16 h-16 text-yellow-500 mx-auto drop-shadow-lg" aria-hidden="true" />
             <div>
               <h2 className="text-3xl font-extrabold text-purple-900 mb-2">Quiz Complete!</h2>
               <p className="text-5xl font-black bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-3">
@@ -409,14 +416,14 @@ export default function HistoryQuiz() {
                 onClick={restartGame}
                 className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold py-3 px-6 rounded-2xl hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
               >
-                <RotateCcw className="w-5 h-5" />
+                <RotateCcw className="w-5 h-5" aria-hidden="true" />
                 Play Again
               </button>
               <Link
                 href="/"
                 className="inline-flex items-center justify-center gap-2 bg-purple-100 text-purple-700 font-bold py-3 px-6 rounded-2xl hover:bg-purple-200 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105"
               >
-                <FaHome className="w-5 h-5" />
+                <FaHome className="w-5 h-5" aria-hidden="true" />
                 Back Home
               </Link>
             </div>
@@ -430,7 +437,7 @@ export default function HistoryQuiz() {
               href="/"
               className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white font-medium py-2 px-5 rounded-2xl hover:bg-white/30 transition-all duration-300"
             >
-              <FaHome /> Back Home
+              <FaHome aria-hidden="true" /> Back Home
             </Link>
           </div>
         )}

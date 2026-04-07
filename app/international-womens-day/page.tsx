@@ -312,6 +312,7 @@ export default function InternationalWomensDay() {
                 e.stopPropagation();
                 explodePhoto(photo.id, e.clientX, e.clientY);
               }}
+              aria-label="Pop Penny photo"
               className={`absolute p-0 border-0 bg-transparent cursor-pointer penny-photo${photo.exploding ? " penny-explode" : ""}`}
               style={{
                 left: `${photo.x}%`,
@@ -324,7 +325,8 @@ export default function InternationalWomensDay() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/penny.png"
-                alt="Penny"
+                alt=""
+                role="presentation"
                 style={{
                   width: photo.size,
                   height: photo.size,
@@ -339,7 +341,7 @@ export default function InternationalWomensDay() {
       </div>
 
       {/* Floating background elements */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <Heart className="absolute top-[8%] left-[12%] w-10 h-10 text-pink-400/20 animate-float" />
         <Heart className="absolute top-[15%] right-[18%] w-6 h-6 text-pink-300/25 animate-float delay-300" />
         <Sparkles className="absolute bottom-[25%] left-[8%] w-8 h-8 text-yellow-300/20 animate-shimmer delay-500" />
@@ -378,13 +380,13 @@ export default function InternationalWomensDay() {
                 key={q.label}
                 className="flex items-center gap-1.5 bg-pink-50 border border-pink-200 rounded-full px-4 py-2 text-sm font-semibold text-pink-700"
               >
-                <q.icon className={`w-4 h-4 ${q.color}`} />
+                <q.icon className={`w-4 h-4 ${q.color}`} aria-hidden="true" />
                 {q.label}
               </div>
             ))}
           </div>
 
-          <div className="w-24 h-1 bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 rounded-full mx-auto" />
+          <div className="w-24 h-1 bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 rounded-full mx-auto" aria-hidden="true" />
         </div>
 
         {/* IWD Banner */}
@@ -404,9 +406,9 @@ export default function InternationalWomensDay() {
         {/* Messages section */}
         <div className="space-y-4">
           <h2 className="text-2xl font-bold text-white text-center flex items-center justify-center gap-2">
-            <Heart className="w-6 h-6 text-pink-300 fill-pink-300" />
+            <Heart className="w-6 h-6 text-pink-300 fill-pink-300" aria-hidden="true" />
             Messages for Penny
-            <Heart className="w-6 h-6 text-pink-300 fill-pink-300" />
+            <Heart className="w-6 h-6 text-pink-300 fill-pink-300" aria-hidden="true" />
           </h2>
 
           {messages.map((msg, i) => (
@@ -460,14 +462,14 @@ export default function InternationalWomensDay() {
               href="/history-quiz"
               className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold py-3 px-5 rounded-2xl hover:from-indigo-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:scale-105"
             >
-              <BookOpen className="w-5 h-5" />
+              <BookOpen className="w-5 h-5" aria-hidden="true" />
               History Quiz
             </Link>
             <Link
               href="/arcade"
               className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-yellow-500 text-purple-900 font-bold py-3 px-5 rounded-2xl hover:from-amber-600 hover:to-yellow-600 transition-all duration-300 shadow-lg hover:scale-105"
             >
-              <Gamepad2 className="w-5 h-5" />
+              <Gamepad2 className="w-5 h-5" aria-hidden="true" />
               Artifact Hunt
             </Link>
           </div>
@@ -479,7 +481,7 @@ export default function InternationalWomensDay() {
             href="/"
             className="inline-flex items-center gap-2 bg-white/95 text-purple-700 font-bold py-3 px-6 rounded-2xl hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
           >
-            <FaHome /> Back Home
+            <FaHome aria-hidden="true" /> Back Home
           </Link>
         </div>
       </div>

@@ -175,7 +175,7 @@ export default function ArcadeGame() {
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-purple-800 py-8 px-4 flex items-center justify-center relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <Sparkles className="absolute top-[12%] left-[10%] w-8 h-8 text-purple-400/20 animate-shimmer" />
         <Gamepad2 className="absolute top-[8%] right-[15%] w-10 h-10 text-indigo-400/15 animate-float delay-300" />
         <Sparkles className="absolute bottom-[20%] right-[12%] w-6 h-6 text-yellow-300/20 animate-shimmer delay-500" />
@@ -193,14 +193,14 @@ export default function ArcadeGame() {
         </div>
 
         {/* Score bar */}
-        <div className="flex justify-between items-center bg-white/10 backdrop-blur-sm rounded-2xl px-5 py-3">
+        <div className="flex justify-between items-center bg-white/10 backdrop-blur-sm rounded-2xl px-5 py-3" aria-live="polite">
           <div className="text-white">
             <span className="text-sm text-purple-200">Score</span>
-            <p className="text-2xl font-bold">{score}</p>
+            <p className="text-2xl font-bold" aria-label={`Score: ${score}`}>{score}</p>
           </div>
           <div className="text-white text-right">
             <span className="text-sm text-purple-200">Best</span>
-            <p className="text-2xl font-bold">{highScore}</p>
+            <p className="text-2xl font-bold" aria-label={`Best score: ${highScore}`}>{highScore}</p>
           </div>
         </div>
 
@@ -217,6 +217,8 @@ export default function ArcadeGame() {
 
         {/* Game board */}
         <div
+          role="application"
+          aria-label="Artifact Hunt game board"
           className="mx-auto rounded-2xl overflow-hidden shadow-2xl border-4 border-purple-400/30 bg-purple-950/80"
           style={{ width: GRID_SIZE * CELL_SIZE + 8, height: GRID_SIZE * CELL_SIZE + 8, padding: 4 }}
           onTouchStart={handleTouchStart}
@@ -302,7 +304,7 @@ export default function ArcadeGame() {
                     onClick={resetGame}
                     className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-bold py-2.5 px-5 rounded-xl hover:from-purple-600 hover:to-indigo-600 transition-all shadow-lg"
                   >
-                    <RotateCcw className="w-4 h-4" />
+                    <RotateCcw className="w-4 h-4" aria-hidden="true" />
                     {gameOver ? "Play Again" : "Start Game"}
                   </button>
                   <p className="text-purple-300 text-xs">Arrow keys / WASD / Swipe to move</p>
@@ -313,11 +315,12 @@ export default function ArcadeGame() {
         </div>
 
         {/* Mobile D-pad controls */}
-        <div className="flex justify-center sm:hidden">
+        <div className="flex justify-center sm:hidden" role="group" aria-label="Game direction controls">
           <div className="grid grid-cols-3 gap-1 w-36">
             <div />
             <button
               onTouchStart={() => directionRef.current !== "DOWN" && setDirection("UP")}
+              aria-label="Move up"
               className="bg-white/20 active:bg-white/40 rounded-lg p-3 text-white text-xl font-bold text-center"
             >
               ↑
@@ -325,6 +328,7 @@ export default function ArcadeGame() {
             <div />
             <button
               onTouchStart={() => directionRef.current !== "RIGHT" && setDirection("LEFT")}
+              aria-label="Move left"
               className="bg-white/20 active:bg-white/40 rounded-lg p-3 text-white text-xl font-bold text-center"
             >
               ←
@@ -332,6 +336,7 @@ export default function ArcadeGame() {
             <div />
             <button
               onTouchStart={() => directionRef.current !== "LEFT" && setDirection("RIGHT")}
+              aria-label="Move right"
               className="bg-white/20 active:bg-white/40 rounded-lg p-3 text-white text-xl font-bold text-center"
             >
               →
@@ -339,6 +344,7 @@ export default function ArcadeGame() {
             <div />
             <button
               onTouchStart={() => directionRef.current !== "UP" && setDirection("DOWN")}
+              aria-label="Move down"
               className="bg-white/20 active:bg-white/40 rounded-lg p-3 text-white text-xl font-bold text-center"
             >
               ↓
@@ -353,7 +359,7 @@ export default function ArcadeGame() {
             href="/"
             className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white font-medium py-2 px-5 rounded-2xl hover:bg-white/30 transition-all duration-300"
           >
-            <FaHome /> Back Home
+            <FaHome aria-hidden="true" /> Back Home
           </Link>
         </div>
       </div>
