@@ -46,7 +46,7 @@ export default function ThankYouCard() {
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-purple-900 via-purple-700 to-fuchsia-600 animate-gradient py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative overflow-hidden">
       {/* Floating decorative elements */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <Sparkles className="absolute top-[10%] left-[15%] w-8 h-8 text-yellow-300/60 animate-shimmer" />
         <Sparkles className="absolute top-[20%] right-[20%] w-6 h-6 text-pink-300/50 animate-shimmer delay-300" />
         <Sparkles className="absolute bottom-[30%] left-[10%] w-5 h-5 text-purple-300/40 animate-shimmer delay-700" />
@@ -58,7 +58,7 @@ export default function ThankYouCard() {
       <div className="max-w-2xl mx-auto relative z-10">
         {/* Main card */}
         <div className="bg-white/95 backdrop-blur-sm shadow-2xl rounded-3xl p-10 text-center animate-pulse-glow">
-          <div className="mb-6">
+          <div className="mb-6" aria-hidden="true">
             <Crown className="w-16 h-16 text-yellow-500 mx-auto mb-4 drop-shadow-lg" />
           </div>
 
@@ -73,52 +73,55 @@ export default function ThankYouCard() {
             The heart and soul of SSW Brisbane. You make every day brighter just by being you.
           </p>
 
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 rounded-full mx-auto mb-8" />
+          <div className="w-24 h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 rounded-full mx-auto mb-8" aria-hidden="true" />
 
           <p className="text-lg text-purple-700 mb-8 font-medium">
             {"You're too awesome for a single page - explore all your cards!"}
           </p>
 
           {/* Card links */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link
-              href="/international-womens-day"
-              className="group relative inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-fuchsia-500 text-white font-bold py-3 px-6 rounded-2xl hover:from-pink-600 hover:to-fuchsia-600 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 hover:scale-105"
-            >
-              <Sparkles className="w-5 h-5" />
-              {"International Women's Day"}
-            </Link>
-            <Link
-              href="/christmas-card"
-              className="group inline-flex items-center justify-center gap-2 bg-purple-100 text-purple-700 font-bold py-3 px-6 rounded-2xl hover:bg-purple-200 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105"
-            >
-              <Gift className="w-5 h-5" />
-              Christmas Card
-            </Link>
-            <Link
-              href="/history-quiz"
-              className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold py-3 px-6 rounded-2xl hover:from-indigo-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-indigo-500/25 hover:scale-105"
-            >
-              <BookOpen className="w-5 h-5" />
-              History Quiz
-            </Link>
-            <Link
-              href="/arcade"
-              className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-yellow-500 text-purple-900 font-bold py-3 px-6 rounded-2xl hover:from-amber-600 hover:to-yellow-600 transition-all duration-300 shadow-lg hover:shadow-amber-500/25 hover:scale-105"
-            >
-              <Gamepad2 className="w-5 h-5" />
-              Artifact Hunt
-            </Link>
-          </div>
+          <nav aria-label="Thank you cards">
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link
+                href="/international-womens-day"
+                className="group relative inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-fuchsia-500 text-white font-bold py-3 px-6 rounded-2xl hover:from-pink-600 hover:to-fuchsia-600 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 hover:scale-105"
+              >
+                <Sparkles className="w-5 h-5" aria-hidden="true" />
+                {"International Women's Day"}
+              </Link>
+              <Link
+                href="/christmas-card"
+                className="group inline-flex items-center justify-center gap-2 bg-purple-100 text-purple-700 font-bold py-3 px-6 rounded-2xl hover:bg-purple-200 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105"
+              >
+                <Gift className="w-5 h-5" aria-hidden="true" />
+                Christmas Card
+              </Link>
+              <Link
+                href="/history-quiz"
+                className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold py-3 px-6 rounded-2xl hover:from-indigo-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-indigo-500/25 hover:scale-105"
+              >
+                <BookOpen className="w-5 h-5" aria-hidden="true" />
+                History Quiz
+              </Link>
+              <Link
+                href="/arcade"
+                className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-yellow-500 text-purple-900 font-bold py-3 px-6 rounded-2xl hover:from-amber-600 hover:to-yellow-600 transition-all duration-300 shadow-lg hover:shadow-amber-500/25 hover:scale-105"
+              >
+                <Gamepad2 className="w-5 h-5" aria-hidden="true" />
+                Artifact Hunt
+              </Link>
+            </div>
+          </nav>
         </div>
       </div>
 
       {/* Floating chat button */}
       <button
         onClick={() => setIsChatOpen(true)}
-        className="fixed bottom-6 right-6 bg-purple-600 text-white rounded-full p-4 shadow-xl hover:bg-purple-700 hover:scale-110 transition-all duration-300 z-50 animate-pulse-glow"
+        aria-label="Open chat about Penny"
+        className="fixed bottom-6 right-6 bg-purple-600 text-white rounded-full p-4 shadow-xl hover:bg-purple-700 hover:scale-110 transition-all duration-300 z-50"
       >
-        <MessageCircle size={24} />
+        <MessageCircle size={24} aria-hidden="true" />
       </button>
 
       {isChatOpen && <ChatBot onClose={() => setIsChatOpen(false)} />}

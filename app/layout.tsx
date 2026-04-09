@@ -18,10 +18,16 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className={`${inter.className} flex flex-col min-h-screen`}>
-        <main className="flex-1 flex">{children}</main>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-purple-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
+        <main id="main-content" className="flex-1 flex">{children}</main>
         <footer className="bg-purple-950/80 text-purple-200 py-4 px-6 flex justify-between items-center text-sm backdrop-blur-sm">
           <div className="flex items-center gap-1.5">
-            Made with <Heart className="w-4 h-4 text-pink-400 fill-pink-400 inline" /> by{" "}
+            Made with <Heart className="w-4 h-4 text-pink-400 fill-pink-400 inline" aria-hidden="true" /><span className="sr-only">love</span> by{" "}
             <a
               href="https://bradystroud.dev"
               target="_blank"
