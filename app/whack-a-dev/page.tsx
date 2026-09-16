@@ -4,12 +4,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import confetti from "canvas-confetti";
 import Link from "next/link";
 import { FaHome } from "react-icons/fa";
-import { Hammer, RotateCcw, Cake, Trophy, Timer, Gift } from "lucide-react";
+import { Hammer, RotateCcw, Cake, Trophy, Timer, Gift, Crown, Send } from "lucide-react";
+import type { LeaderboardEntry } from "../api/leaderboard/route";
 import { HAMMER_CURSOR, Desk, Monitor, Mug, PartyHat, Bunting, Balloon, Starburst, StickyNote } from "./art";
 
 const HOLE_COUNT = 9;
 const GAME_SECONDS = 30;
 const BEST_SCORE_KEY = "whack-a-dev-best";
+const PLAYER_NAME_KEY = "whack-a-dev-name";
+const MAX_NAME_LENGTH = 20;
 
 type Popup = {
   kind: "dev" | "cake" | "gift";
@@ -67,6 +70,34 @@ function writeBestScore(score: number) {
   }
 }
 
+function readPlayerName(): string {
+  try {
+    return localStorage.getItem(PLAYER_NAME_KEY) ?? "";
+  } catch {
+    return "";
+  }
+}
+
+function writePlayerName(name: string) {
+  try {
+    localStorage.setItem(PLAYER_NAME_KEY, name);
+  } catch {
+    // Storage unavailable - the player just types their name again next time
+  }
+}
+
+async function fetchLeaderboard(): Promise<LeaderboardEntry[] | null> {
+  try {
+    const res = await fetch("/api/leaderboard", { cache: "no-store" });
+    if (!res.ok) return null;
+    return (await res.json()) as LeaderboardEntry[];
+  } catch {
+    return null;
+  }
+}
+
+const MEDALS = ["🥇", "🥈", "🥉"];
+
 export default function WhackADev() {
   const [holes, setHoles] = useState<(Popup | null)[]>(() => Array(HOLE_COUNT).fill(null));
   const [score, setScore] = useState(0);
@@ -78,6 +109,13 @@ export default function WhackADev() {
   const [bonked, setBonked] = useState<number | null>(null);
   // Visual only: the hit burst outlives the 150ms bonk squash so the player can read it
   const [burst, setBurst] = useState<{ index: number; text: string; good: boolean; key: number } | null>(null);
+
+  // Shared leaderboard (null = not loaded or unavailable)
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[] | null>(null);
+  const [leaderboardLoaded, setLeaderboardLoaded] = useState(false);
+  const [playerName, setPlayerName] = useState("");
+  const [submitState, setSubmitState] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [rank, setRank] = useState<number | null>(null);
 
   const runningRef = useRef(false);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -91,7 +129,40 @@ export default function WhackADev() {
 
   useEffect(() => {
     setBestScore(readBestScore());
+    setPlayerName(readPlayerName());
   }, []);
+
+  const loadLeaderboard = useCallback(async () => {
+    const entries = await fetchLeaderboard();
+    setLeaderboard(entries);
+    setLeaderboardLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    loadLeaderboard();
+  }, [loadLeaderboard]);
+
+  const submitScore = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const name = playerName.trim().slice(0, MAX_NAME_LENGTH);
+    if (!name || submitState === "saving") return;
+    setSubmitState("saving");
+    writePlayerName(name);
+    try {
+      const res = await fetch("/api/leaderboard", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, score }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = (await res.json()) as { rank: number };
+      setRank(data.rank);
+      setSubmitState("saved");
+      loadLeaderboard();
+    } catch {
+      setSubmitState("error");
+    }
+  };
 
   const clearTimers = () => {
     timersRef.current.forEach(clearTimeout);
@@ -156,6 +227,8 @@ export default function WhackADev() {
     setTimeLeft(GAME_SECONDS);
     timeLeftRef.current = GAME_SECONDS;
     setFinished(false);
+    setSubmitState("idle");
+    setRank(null);
     setHoles(Array(HOLE_COUNT).fill(null));
     setRunning(true);
     runningRef.current = true;
@@ -447,7 +520,40 @@ export default function WhackADev() {
                             New best!
                           </p>
                         )}
-                        <p className="text-purple-100 mt-3 mb-5 text-sm sm:text-base" role="status">{verdict()}</p>
+                        <p className="text-purple-100 mt-3 text-sm sm:text-base" role="status">{verdict()}</p>
+                        {score > 0 && submitState !== "saved" && (
+                          <form onSubmit={submitScore} className="mt-4 mb-4 flex flex-col sm:flex-row items-stretch gap-2 max-w-xs mx-auto">
+                            <label htmlFor="player-name" className="sr-only">Your name for the leaderboard</label>
+                            <input
+                              id="player-name"
+                              type="text"
+                              value={playerName}
+                              onChange={(e) => setPlayerName(e.target.value)}
+                              maxLength={MAX_NAME_LENGTH}
+                              placeholder="Your name"
+                              autoComplete="nickname"
+                              required
+                              className="flex-1 min-w-0 rounded-xl bg-white/95 text-purple-900 font-bold placeholder:text-purple-300 px-3 py-2 ring-2 ring-purple-400 focus:ring-amber-300 outline-none"
+                            />
+                            <button
+                              type="submit"
+                              disabled={submitState === "saving" || !playerName.trim()}
+                              className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-400 text-purple-950 font-black uppercase tracking-wide px-4 py-2 hover:bg-emerald-300 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+                            >
+                              <Send className="w-4 h-4" aria-hidden="true" />
+                              {submitState === "saving" ? "Saving" : "Save"}
+                            </button>
+                          </form>
+                        )}
+                        {submitState === "error" && (
+                          <p className="text-rose-300 text-xs font-bold mb-3" role="alert">Could not save. Try again?</p>
+                        )}
+                        {submitState === "saved" && rank !== null && (
+                          <p className="mt-3 mb-4 text-emerald-300 font-black text-lg" role="status">
+                            You are #{rank} on the leaderboard!
+                          </p>
+                        )}
+                        {score === 0 && <div className="mb-5" />}
                       </>
                     ) : (
                       <>
@@ -488,6 +594,42 @@ export default function WhackADev() {
                 </div>
               )}
             </div>
+
+            {/* Leaderboard */}
+            <section
+              aria-labelledby="leaderboard-heading"
+              className="mt-4 rounded-2xl bg-purple-950 ring-2 ring-purple-700/60 shadow-[inset_0_6px_18px_rgba(0,0,0,.5)] p-3 sm:p-4 text-left"
+            >
+              <h2
+                id="leaderboard-heading"
+                className="flex items-center justify-center gap-2 text-xs sm:text-sm font-black uppercase tracking-[.3em] text-amber-300"
+              >
+                <Crown className="w-4 h-4" aria-hidden="true" /> Leaderboard <Crown className="w-4 h-4" aria-hidden="true" />
+              </h2>
+              {!leaderboardLoaded ? (
+                <p className="mt-3 text-center text-purple-300 text-sm">Loading scores…</p>
+              ) : leaderboard === null ? (
+                <p className="mt-3 text-center text-purple-300 text-sm">Leaderboard is having a nap. Try again later.</p>
+              ) : leaderboard.length === 0 ? (
+                <p className="mt-3 text-center text-purple-300 text-sm">No scores yet. Be the first!</p>
+              ) : (
+                <ol className="mt-3 space-y-1">
+                  {leaderboard.map((entry, i) => (
+                    <li
+                      key={`${entry.createdAt}-${i}`}
+                      className={`flex items-center gap-2 sm:gap-3 rounded-xl px-3 py-1.5 ${
+                        i === 0 ? "bg-amber-300/15 ring-1 ring-amber-300/40" : "bg-white/5"
+                      }`}
+                    >
+                      <span className="w-7 text-center text-lg" aria-hidden="true">{MEDALS[i] ?? <span className="text-xs font-bold text-purple-300">{i + 1}</span>}</span>
+                      <span className="sr-only">Rank {i + 1}: </span>
+                      <span className="flex-1 truncate font-bold text-white">{entry.name}</span>
+                      <span className={`led font-black text-lg ${i === 0 ? "text-amber-300" : "text-pink-300"}`}>{entry.score}</span>
+                    </li>
+                  ))}
+                </ol>
+              )}
+            </section>
           </div>
         </div>
 

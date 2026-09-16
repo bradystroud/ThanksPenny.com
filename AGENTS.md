@@ -20,6 +20,7 @@ app/
 ├── page.tsx                        # Home - main thank you hub
 ├── layout.tsx                      # Root layout with footer
 ├── globals.css                     # Tailwind directives + CSS variables
+├── api/leaderboard/route.ts        # GET top 10 / POST a score (Neon Postgres)
 ├── components/
 │   └── ChatBot.tsx                 # Floating chat widget
 ├── international-womens-day/
@@ -52,7 +53,7 @@ yarn lint         # Run ESLint
 - Tailwind utility classes for all styling (no CSS modules)
 - Custom IWD theme colors defined in `tailwind.config.ts`
 - The Christmas card is legacy static HTML served via Next.js rewrites in `next.config.ts`
-- No backend/API - purely static frontend
+- Pages are static. The only server code is `app/api/leaderboard` (Whack-a-Dev scores), which reads `DATABASE_URL` (Neon Postgres, project `thankspenny`; table `whack_a_dev_scores`). Set it in `.env.local` for local dev (`vercel env pull`)
 - Contributors add messages by editing page files directly and making PRs
 
 ## Design Guidelines
