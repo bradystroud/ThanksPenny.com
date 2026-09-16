@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import confetti from "canvas-confetti";
-import { MessageCircle, Sparkles, Crown, PartyPopper, Gift, BookOpen, Gamepad2 } from "lucide-react";
+import { MessageCircle, Sparkles, Crown, PartyPopper, Gift, BookOpen, Gamepad2, Cake, Hammer } from "lucide-react";
 import { ChatBot } from "./components/ChatBot";
 import Link from "next/link";
 
@@ -81,7 +81,21 @@ export default function ThankYouCard() {
 
           {/* Card links */}
           <nav aria-label="Thank you cards">
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4">
+              <Link
+                href="/birthday"
+                className="group relative inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 text-purple-900 font-bold py-3 px-6 rounded-2xl hover:from-amber-500 hover:to-yellow-500 transition-all duration-300 shadow-lg hover:shadow-amber-500/25 hover:scale-105 animate-pulse-glow"
+              >
+                <Cake className="w-5 h-5" aria-hidden="true" />
+                Birthday Card
+              </Link>
+              <Link
+                href="/whack-a-dev"
+                className="group inline-flex items-center justify-center gap-2 bg-purple-800 text-white font-bold py-3 px-6 rounded-2xl hover:bg-purple-900 transition-all duration-300 shadow-lg hover:scale-105"
+              >
+                <Hammer className="w-5 h-5" aria-hidden="true" />
+                Whack-a-Dev
+              </Link>
               <Link
                 href="/international-womens-day"
                 className="group relative inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-fuchsia-500 text-white font-bold py-3 px-6 rounded-2xl hover:from-pink-600 hover:to-fuchsia-600 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 hover:scale-105"

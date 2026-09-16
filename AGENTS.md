@@ -22,8 +22,17 @@ app/
 ├── globals.css                     # Tailwind directives + CSS variables
 ├── components/
 │   └── ChatBot.tsx                 # Floating chat widget
-└── international-womens-day/
-    └── page.tsx                    # IWD celebration page
+├── international-womens-day/
+│   └── page.tsx                    # IWD celebration page
+├── birthday/
+│   └── page.tsx                    # Birthday card (blow out the candles)
+├── whack-a-dev/
+│   ├── page.tsx                    # Whack-a-Mole game, office edition
+│   └── art.tsx                     # Inline SVG art for the game (desk, bunting, hammer cursor)
+├── history-quiz/
+│   └── page.tsx                    # History quiz
+└── arcade/
+    └── page.tsx                    # Snake-style artifact hunt
 public/
 └── christmas-card/                 # Legacy static HTML card
 ```
