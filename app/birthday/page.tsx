@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import confetti from "canvas-confetti";
 import Link from "next/link";
 import { FaHome } from "react-icons/fa";
-import { Cake, Gift, PartyPopper, Sparkles, Star, Heart, Wind, Landmark, ScrollText, ClipboardCheck, Users, Hammer } from "lucide-react";
+import { Cake, Gift, PartyPopper, Sparkles, Star, Heart, Wind, Hammer } from "lucide-react";
 
 const CANDLE_COUNT = 7;
 
@@ -16,7 +16,7 @@ const messages = [
   {
     name: "Brady Stroud",
     message:
-      "Happy birthday Penny! The Brisbane office would fall apart without you. Hope your day is as brilliant as you are. 🎂",
+      "Happy birthday, Penny. Sorry I missed karaoke last night, looked fun as! 🎤",
     emoji: "🎉",
   },
   // DEVELOPERS: Add your birthday message here! Copy this format:
@@ -25,15 +25,6 @@ const messages = [
   //   message: "Happy birthday Penny!",
   //   emoji: "🎈",
   // },
-];
-
-// Sourced from Penny's SSW People profile and LinkedIn
-const trivia = [
-  { icon: ScrollText, label: "Bachelor of Ancient History", color: "text-amber-500" },
-  { icon: Landmark, label: "MSc Museum Studies, ex-curator", color: "text-purple-500" },
-  { icon: ClipboardCheck, label: "Certified Scrum Master", color: "text-pink-500" },
-  { icon: Users, label: "Champion of the SSW interns", color: "text-fuchsia-500" },
-  { icon: Star, label: "Live long and prosper 🖖", color: "text-yellow-500" },
 ];
 
 const balloons = [
@@ -198,22 +189,7 @@ export default function BirthdayCard() {
             all about you, so put the coffee orders down and enjoy some cake.
           </p>
 
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400 rounded-full mx-auto my-6" aria-hidden="true" />
-
-          <p className="text-sm font-bold uppercase tracking-widest text-purple-400 mb-3">
-            About the birthday girl
-          </p>
-          <ul className="flex flex-wrap justify-center gap-3 list-none p-0 m-0">
-            {trivia.map((t) => (
-              <li
-                key={t.label}
-                className="flex items-center gap-1.5 bg-purple-50 border border-purple-200 rounded-full px-4 py-2 text-sm font-semibold text-purple-700"
-              >
-                <t.icon className={`w-4 h-4 ${t.color}`} aria-hidden="true" />
-                {t.label}
-              </li>
-            ))}
-          </ul>
+          <div className="w-24 h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400 rounded-full mx-auto mt-6" aria-hidden="true" />
         </div>
 
         {/* Cake */}
