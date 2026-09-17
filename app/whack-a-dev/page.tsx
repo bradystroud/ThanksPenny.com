@@ -34,6 +34,8 @@ const DEVS: Dev[] = [
   { name: "Brady", photo: "/devs/brady.jpg" },
   { name: "Kaha", photo: "/devs/kaha.jpg" },
   { name: "Ivan", photo: "/devs/ivan.jpg" },
+  { name: "Vlad", photo: "/devs/vlad.jpg" },
+  { name: "Luke", photo: "/devs/luke.jpg" },
 ];
 
 const REQUESTS = [
@@ -129,7 +131,10 @@ export default function WhackADev() {
   const [leaderboardLoaded, setLeaderboardLoaded] = useState(false);
   const [playerName, setPlayerName] = useState("");
   const [submitState, setSubmitState] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [submitError, setSubmitError] = useState("Could not save. Try again?");
   const [rank, setRank] = useState<number | null>(null);
+  // Issued by the server when a round starts; proves the round was played
+  const roundTokenRef = useRef<Promise<string | null>>(Promise.resolve(null));
 
   const runningRef = useRef(false);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -163,17 +168,23 @@ export default function WhackADev() {
     setSubmitState("saving");
     writePlayerName(name);
     try {
+      const token = await roundTokenRef.current;
       const res = await fetch("/api/leaderboard", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, score }),
+        body: JSON.stringify({ name, score, token }),
       });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = (await res.json()) as { rank: number };
+      const data = (await res.json()) as { rank?: number; error?: string };
+      if (!res.ok || data.rank === undefined) {
+        setSubmitError(data.error ?? "Could not save. Try again?");
+        setSubmitState("error");
+        return;
+      }
       setRank(data.rank);
       setSubmitState("saved");
       loadLeaderboard();
     } catch {
+      setSubmitError("Could not save. Try again?");
       setSubmitState("error");
     }
   };
@@ -243,6 +254,10 @@ export default function WhackADev() {
     setFinished(false);
     setSubmitState("idle");
     setRank(null);
+    roundTokenRef.current = fetch("/api/leaderboard/start", { method: "POST" })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: { token?: string } | null) => data?.token ?? null)
+      .catch(() => null);
     setHoles(Array(HOLE_COUNT).fill(null));
     setRunning(true);
     runningRef.current = true;
@@ -575,7 +590,7 @@ export default function WhackADev() {
                           </form>
                         )}
                         {submitState === "error" && (
-                          <p className="text-rose-300 text-xs font-bold mb-3" role="alert">Could not save. Try again?</p>
+                          <p className="text-rose-300 text-xs font-bold mb-3" role="alert">{submitError}</p>
                         )}
                         {submitState === "saved" && rank !== null && (
                           <p className="mt-3 mb-4 text-emerald-300 font-black text-lg" role="status">

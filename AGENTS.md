@@ -53,7 +53,8 @@ yarn lint         # Run ESLint
 - Tailwind utility classes for all styling (no CSS modules)
 - Custom IWD theme colors defined in `tailwind.config.ts`
 - The Christmas card is legacy static HTML served via Next.js rewrites in `next.config.ts`
-- Pages are static. The only server code is `app/api/leaderboard` (Whack-a-Dev scores), which reads `DATABASE_URL` (Neon Postgres, project `thankspenny`; table `whack_a_dev_scores`). Set it in `.env.local` for local dev (`vercel env pull`)
+- Pages are static. The only server code is `app/api/leaderboard` (Whack-a-Dev scores), which reads `DATABASE_URL` (Neon Postgres, project `thankspenny`; table `whack_a_dev_scores`) and `LEADERBOARD_SECRET` (signs round tokens). Set both in `.env.local` for local dev (`vercel env pull`)
+- Anti-cheat: `POST /api/leaderboard/start` issues a signed round token; a score is accepted only with a token at least 30s old, each token once (`round_nonce` is UNIQUE), and never above `MAX_SCORE`
 - Contributors add messages by editing page files directly and making PRs
 
 ## Design Guidelines
