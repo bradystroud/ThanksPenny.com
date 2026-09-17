@@ -33,6 +33,7 @@ const DEVS: Dev[] = [
   { name: "Brook", photo: "/devs/brook.jpg" },
   { name: "Brady", photo: "/devs/brady.jpg" },
   { name: "Kaha", photo: "/devs/kaha.jpg" },
+  { name: "Ivan", photo: "/devs/ivan.jpg" },
 ];
 
 const REQUESTS = [
