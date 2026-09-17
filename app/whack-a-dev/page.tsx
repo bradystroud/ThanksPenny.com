@@ -57,14 +57,35 @@ const REQUESTS = [
 
 const POINTS = { dev: 1, gift: 5, cake: -3 } as const;
 
-function randomPopup(id: number): Popup {
+function shuffled<T>(items: readonly T[]): T[] {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+/**
+ * Deals devs from a shuffled deck so every face shows up before any repeats.
+ * Pure random picks left some people out of a whole round.
+ */
+function makeDevDeck() {
+  let deck: Dev[] = [];
+  return () => {
+    if (deck.length === 0) deck = shuffled(DEVS);
+    return deck.pop() as Dev;
+  };
+}
+
+function randomPopup(id: number, nextDev: () => Dev): Popup {
   const roll = Math.random();
   if (roll < 0.12) return { kind: "cake", emoji: "🎂", line: "Don't smash the cake!", id };
   if (roll < 0.18) return { kind: "gift", emoji: "🎁", line: "A present for Penny!", id };
   return {
     kind: "dev",
     emoji: "👨‍💻",
-    dev: DEVS[Math.floor(Math.random() * DEVS.length)],
+    dev: nextDev(),
     line: REQUESTS[Math.floor(Math.random() * REQUESTS.length)],
     id,
   };
@@ -139,6 +160,7 @@ export default function WhackADev() {
   const runningRef = useRef(false);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const nextIdRef = useRef(1);
+  const nextDevRef = useRef(makeDevDeck());
   const scoreRef = useRef(0);
   scoreRef.current = score;
   const timeLeftRef = useRef(GAME_SECONDS);
@@ -216,7 +238,7 @@ export default function WhackADev() {
       const empty = holesRef.current.map((h, i) => (h === null ? i : -1)).filter((i) => i >= 0);
       if (empty.length > 0) {
         const index = empty[Math.floor(Math.random() * empty.length)];
-        const popup = randomPopup(nextIdRef.current++);
+        const popup = randomPopup(nextIdRef.current++, nextDevRef.current);
         setHoles((prev) => prev.map((h, i) => (i === index ? popup : h)));
         const hide = setTimeout(() => hideHole(index, popup.id), visibleFor);
         timersRef.current.push(hide);
@@ -254,6 +276,7 @@ export default function WhackADev() {
     setFinished(false);
     setSubmitState("idle");
     setRank(null);
+    nextDevRef.current = makeDevDeck();
     roundTokenRef.current = fetch("/api/leaderboard/start", { method: "POST" })
       .then((res) => (res.ok ? res.json() : null))
       .then((data: { token?: string } | null) => data?.token ?? null)
