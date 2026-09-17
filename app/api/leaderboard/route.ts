@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-const TOP_N = 10;
+// The whole board is shown, capped only so a runaway table cannot blow up the page
+const MAX_ROWS = 500;
 const MAX_NAME_LENGTH = 20;
 // Rounds are 30s with at most ~2 pops/sec, so anything above this is not a real score
 const MAX_SCORE = 300;
@@ -27,7 +28,7 @@ export async function GET() {
       SELECT name, score, created_at
       FROM whack_a_dev_scores
       ORDER BY score DESC, created_at ASC
-      LIMIT ${TOP_N}
+      LIMIT ${MAX_ROWS}
     `;
     const entries: LeaderboardEntry[] = rows.map((r) => ({
       name: r.name as string,

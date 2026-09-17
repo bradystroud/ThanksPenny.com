@@ -613,7 +613,7 @@ export default function WhackADev() {
               ) : leaderboard.length === 0 ? (
                 <p className="mt-3 text-center text-purple-300 text-sm">No scores yet. Be the first!</p>
               ) : (
-                <ol className="mt-3 space-y-1">
+                <ol className="mt-3 space-y-1 max-h-80 overflow-y-auto pr-1">
                   {leaderboard.map((entry, i) => (
                     <li
                       key={`${entry.createdAt}-${i}`}
