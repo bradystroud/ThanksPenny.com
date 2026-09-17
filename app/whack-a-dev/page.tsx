@@ -19,9 +19,21 @@ type Popup = {
   emoji: string;
   line: string;
   id: number;
+  /** Set for devs: which Brisbane face is asking */
+  dev?: Dev;
 };
 
-const DEVS = ["👨‍💻", "🧑‍💻", "👩‍💻", "🤓", "😅", "🙋‍♂️"];
+type Dev = { name: string; photo: string };
+
+// Photos come from the public SSW.People.Profiles repo (public/devs/*.jpg)
+const DEVS: Dev[] = [
+  { name: "JK", photo: "/devs/jk.jpg" },
+  { name: "Gordon", photo: "/devs/gordon.jpg" },
+  { name: "Daniel", photo: "/devs/daniel.jpg" },
+  { name: "Brook", photo: "/devs/brook.jpg" },
+  { name: "Brady", photo: "/devs/brady.jpg" },
+  { name: "Kaha", photo: "/devs/kaha.jpg" },
+];
 
 const REQUESTS = [
   "Where's the HDMI cable?",
@@ -48,7 +60,8 @@ function randomPopup(id: number): Popup {
   if (roll < 0.18) return { kind: "gift", emoji: "🎁", line: "A present for Penny!", id };
   return {
     kind: "dev",
-    emoji: DEVS[Math.floor(Math.random() * DEVS.length)],
+    emoji: "👨‍💻",
+    dev: DEVS[Math.floor(Math.random() * DEVS.length)],
     line: REQUESTS[Math.floor(Math.random() * REQUESTS.length)],
     id,
   };
@@ -423,7 +436,7 @@ export default function WhackADev() {
                     key={i}
                     onClick={() => whack(i)}
                     disabled={!running}
-                    aria-label={popup ? `${popup.kind}: ${popup.line}` : "Empty desk"}
+                    aria-label={popup ? `${popup.dev ? popup.dev.name : popup.kind}: ${popup.line}` : "Empty desk"}
                     style={running ? { cursor: HAMMER_CURSOR } : undefined}
                     className={`cubicle relative aspect-square rounded-xl overflow-hidden shadow-[0_4px_0_#3b0764] ring-2 ring-purple-300/70 disabled:cursor-default select-none touch-manipulation active:translate-y-[2px] active:shadow-[0_2px_0_#3b0764] transition-[box-shadow,transform] duration-75${bonked === i ? " bonked" : ""}`}
                   >
@@ -467,9 +480,24 @@ export default function WhackADev() {
                                 <span className="twinkle absolute bottom-0 -left-3 text-xs sm:text-sm [animation-delay:.6s]">✨</span>
                               </>
                             )}
-                            <span className={`relative text-[2.1rem] sm:text-5xl leading-none drop-shadow-md ${popup.kind === "gift" ? "wiggle inline-block" : ""}`}>
-                              {popup.emoji}
-                            </span>
+                            {popup.dev ? (
+                              <span className="relative block">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                  src={popup.dev.photo}
+                                  alt=""
+                                  draggable={false}
+                                  className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover object-top ring-[3px] ring-white shadow-lg bg-purple-200"
+                                />
+                                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-purple-900 text-white text-[9px] sm:text-[11px] font-black uppercase tracking-wide px-2 py-0.5 ring-2 ring-white shadow">
+                                  {popup.dev.name}
+                                </span>
+                              </span>
+                            ) : (
+                              <span className={`relative text-[2.1rem] sm:text-5xl leading-none drop-shadow-md ${popup.kind === "gift" ? "wiggle inline-block" : ""}`}>
+                                {popup.emoji}
+                              </span>
+                            )}
                           </span>
                         </span>
                       )}
