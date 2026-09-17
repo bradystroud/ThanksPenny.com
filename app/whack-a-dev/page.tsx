@@ -461,12 +461,12 @@ export default function WhackADev() {
                     <StickyNote className="absolute left-[10%] top-[16%] w-[16%] rotate-[-8deg] drop-shadow-sm" />
                     <Monitor className="absolute right-[5%] bottom-[29%] w-[28%] drop-shadow" />
                     {/* Pop-up layer sits under the desk in z-order, so a rising visitor is hidden behind it */}
-                    <span aria-hidden="true" className="absolute inset-x-0 top-0 bottom-[18%] sm:bottom-[21%] flex items-end justify-center">
+                    <span aria-hidden="true" className="absolute inset-x-0 top-0 bottom-[28%] flex items-end justify-center">
                       {popup && (
                         <span className="pop-up relative flex flex-col items-center w-full px-1">
                           {/* Speech bubble */}
                           <span
-                            className={`relative mb-1 sm:mb-1.5 max-w-full sm:max-w-[96%] rounded-lg px-1 sm:px-1.5 py-0.5 sm:py-1 text-[9px] sm:text-[11px] font-bold leading-tight shadow-md ring-1 ${
+                            className={`relative mb-0.5 sm:mb-1.5 max-w-full sm:max-w-[96%] rounded-lg px-1 sm:px-1.5 py-0.5 sm:py-1 text-[9px] sm:text-[11px] font-bold leading-tight shadow-md ring-1 ${
                               popup.kind === "cake"
                                 ? "bg-rose-600 text-white ring-rose-800"
                                 : popup.kind === "gift"
@@ -474,7 +474,7 @@ export default function WhackADev() {
                                   : "bg-white text-purple-900 ring-purple-300"
                             }`}
                           >
-                            {popup.line}
+                            <span className={popup.dev ? "block truncate sm:whitespace-normal" : "block"}>{popup.line}</span>
                             <span
                               className={`absolute left-1/2 -bottom-1 w-2.5 h-2.5 -translate-x-1/2 rotate-45 ${
                                 popup.kind === "cake" ? "bg-rose-600" : popup.kind === "gift" ? "bg-amber-300" : "bg-white"
@@ -497,15 +497,15 @@ export default function WhackADev() {
                               </>
                             )}
                             {popup.dev ? (
-                              <span className="relative block">
+                              <span className="relative block pb-1 sm:pb-2">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
                                   src={popup.dev.photo}
                                   alt=""
                                   draggable={false}
-                                  className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover object-top ring-[3px] ring-white shadow-lg bg-purple-200"
+                                  className="w-10 h-10 sm:w-14 sm:h-14 rounded-full object-cover object-[50%_15%] ring-[3px] ring-white shadow-lg bg-purple-200"
                                 />
-                                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-purple-900 text-white text-[9px] sm:text-[11px] font-black uppercase tracking-wide px-2 py-0.5 ring-2 ring-white shadow">
+                                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-purple-900 text-white text-[9px] sm:text-[11px] font-black uppercase tracking-wide px-2 py-0.5 ring-2 ring-white shadow">
                                   {popup.dev.name}
                                 </span>
                               </span>
